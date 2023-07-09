@@ -19,13 +19,13 @@ import java.nio.file.Paths;
 public class ResumeAPIService {
 
     @PostMapping(value = "/resume")
-    public ResponseEntity<Object> createResumeDetails(@RequestBody Map<String, Object> resumeJSON) throws IOException {
+    public ResponseEntity<Object> createResumeDetails(@RequestBody Map<String, Object> resumeJSON) throws Exception {
 
         int id = Integer.parseInt(String.valueOf(resumeJSON.get("template_id")));
 
-//        if(id != 1 && id != 2 && id != 3){
-//            throw new TemplateNotFoundException("Template Not Found");
-//        }
+        if(id != 1 && id != 2 && id != 3){
+            throw new TemplateNotFoundException("Template Not Found");
+        }
 
         GenerateJSON gj = new GenerateJSON();
         gj.generateJSON(resumeJSON);
