@@ -11,6 +11,7 @@ import com.adobe.pdfservices.operation.pdfops.DocumentMergeOperation;
 import com.adobe.pdfservices.operation.pdfops.options.documentmerge.DocumentMergeOptions;
 import com.adobe.pdfservices.operation.pdfops.options.documentmerge.OutputFormat;
 
+import com.example.restdemo.exception.*;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
@@ -61,10 +62,19 @@ public class GeneratePDF {
             // Save the result at the specified location
             result.saveAs(output_file);
 
-            System.out.println("All Done");
+            LOGGER.info("All Done");
 
-        } catch (ServiceApiException | IOException | SdkException | ServiceUsageException e) {
+        }
+        catch (ServiceApiException | IllegalArgumentException | ServiceUsageException e){
+            LOGGER.error("Unauthorised");
+
+            throw new UnauthorizedException("Unauthorised");
+        }
+        catch (IOException | SdkException e) {
             LOGGER.error("Exception encountered while executing operation", e);
+
+            throw new InternalServerErrorException("Internal Server Error");
+
         }
     }
 }

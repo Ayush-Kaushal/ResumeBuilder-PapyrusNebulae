@@ -4,26 +4,20 @@ import org.springframework.http.HttpStatus;
 
 
 public class ResumeBuilderAPIException {
+    private final String code;
     private final String message;
-    private final Throwable throwable;
-    private final org.springframework.http.HttpStatus httpStatus;
 
-    public ResumeBuilderAPIException(String message, Throwable throwable, HttpStatus httpStatus) {
+    public ResumeBuilderAPIException(String code, String message) {
+        this.code = code;
         this.message = message;
-        this.throwable = throwable;
-        this.httpStatus = httpStatus;
     }
 
+    public String getCode() {
+        return code;
+    }
 
     public String getMessage() {
         return message;
     }
 
-    public Throwable getThrowable() {
-        return throwable;
-    }
-
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
-    }
 }
