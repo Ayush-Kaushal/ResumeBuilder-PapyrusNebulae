@@ -38,7 +38,7 @@ public class ResumeAPIService {
             int templateId = Integer.parseInt(id);
 
             if (templateId != 1 && templateId != 2 && templateId != 3) {
-                throw new TemplateNotFoundException("Template Not Found");
+                throw new TemplateNotFoundException("Template not found");
             }
 
             GenerateJSON gj = new GenerateJSON();

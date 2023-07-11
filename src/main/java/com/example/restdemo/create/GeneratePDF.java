@@ -41,8 +41,8 @@ public class GeneratePDF {
 
             // Initial setup, create credentials instance.
             Credentials credentials = Credentials.servicePrincipalCredentialsBuilder()
-                    .withClientId("9e52a716944a446c8c2ddaf6b0f66706")
-                    .withClientSecret("p8e-4wS_-ckwfLtGVrhjQ_73_0Hmx7W7w3LN")
+                    .withClientId("PDF_SERVICES_CLIENT_ID")
+                    .withClientSecret("p8e-4wS_-PDF_SERVICES_CLIENT_SECRET")
                     .build();
 
             // Create an ExecutionContext using credentials.
