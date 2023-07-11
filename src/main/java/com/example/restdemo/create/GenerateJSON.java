@@ -70,12 +70,13 @@ public class GenerateJSON {
             Files.deleteIfExists(Paths.get(jsonPath));
             mapper.writeValue(new File(jsonPath), newJson);
         }
-        catch (BadRequestException e){
-            throw new BadRequestException("Bad Request");
-        }
         catch (IOException e){
             throw new InternalServerErrorException("Internal Server Error");
         }
+        catch (Exception e){
+            throw new BadRequestException("Bad Request");
+        }
+
     }
 
     public List<HashMap<String, String>> getEducation(String educationDetails){
