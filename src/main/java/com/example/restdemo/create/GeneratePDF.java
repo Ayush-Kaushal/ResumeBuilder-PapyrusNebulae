@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 
 import org.json.JSONObject;
 
@@ -40,10 +41,13 @@ public class GeneratePDF {
             System.out.println("About to generate a PDF based on " + input_file + "\n");
 
             // Initial setup, create credentials instance.
+            Map<String, String> env = System.getenv();
+
             Credentials credentials = Credentials.servicePrincipalCredentialsBuilder()
-                    .withClientId("PDF_SERVICES_CLIENT_ID")
-                    .withClientSecret("p8e-4wS_-PDF_SERVICES_CLIENT_SECRET")
+                    .withClientId(env.get("PDF_SERVICES_CLIENT_ID"))
+                    .withClientSecret(env.get("PDF_SERVICES_CLIENT_SECRET"))
                     .build();
+
 
             // Create an ExecutionContext using credentials.
             ExecutionContext executionContext = ExecutionContext.create(credentials);
