@@ -21,6 +21,7 @@ public class GenerateJSON {
 
             String[] prsnlInfo = String.valueOf(resumeJSON.get("personal_information")).split(",");
 
+
             String Name = prsnlInfo[0].split("=")[1];
             String LastName = prsnlInfo[1].split("=")[1];
             String EmailAddress = prsnlInfo[2].split("=")[1];
@@ -59,7 +60,7 @@ public class GenerateJSON {
 
 
             for (Object val : newJson.values()) {
-                if (val == null || String.valueOf(val).length() == 0) {
+                if (val == null || String.valueOf(val).equals("null") || String.valueOf(val).length() == 0) {
                     throw new BadRequestException("Bad Request");
                 }
             }
@@ -112,16 +113,16 @@ public class GenerateJSON {
         }
 
 
-        if(schools.size() != passingYears.size() || schools.size() != descriptions.size()){
+        if(schools.size() != passingYears.size() || schools.size() != descriptions.size() || schools.size() == 0){
             throw new BadRequestException("Bad Request");
         }
 
         for (int i = 0; i < schools.size(); i++) {
             HashMap<String, String> hm = new HashMap<>();
 
-            if(schools.get(i) == null || schools.get(i).length() == 0
-            || passingYears.get(i) == null || passingYears.get(i).length() == 0
-            || descriptions.get(i) == null || descriptions.get(i).length() == 0){
+            if(schools.get(i).equals("null") || schools.get(i).length() == 0
+            || passingYears.get(i).equals("null") || passingYears.get(i).length() == 0
+            || descriptions.get(i).equals("null") || descriptions.get(i).length() == 0){
                 throw new BadRequestException("Bad Request");
             }
 
@@ -168,16 +169,16 @@ public class GenerateJSON {
         }
 
 
-        if(companyNames.size() != passingYears.size() || companyNames.size() != responsibilities.size()){
+        if(companyNames.size() != passingYears.size() || companyNames.size() != responsibilities.size() || companyNames.size() == 0){
             throw new BadRequestException("Bad Request");
         }
 
         for(int i = 0; i < companyNames.size(); i++){
             HashMap<String, String> hm = new HashMap<>();
 
-            if(companyNames.get(i) == null || companyNames.get(i).length() == 0
-            || passingYears.get(i) == null || passingYears.get(i).length() == 0
-            || responsibilities.get(i) == null || responsibilities.get(i).length() == 0){
+            if(companyNames.get(i).equals("null") || companyNames.get(i).length() == 0
+            || passingYears.get(i).equals("null") || passingYears.get(i).length() == 0
+            || responsibilities.get(i).equals("null") || responsibilities.get(i).length() == 0){
                 throw new BadRequestException("Bad Request");
             }
 
@@ -214,15 +215,15 @@ public class GenerateJSON {
             awards.add(matcher.group(1).trim());
         }
 
-        if(fields.size() != awards.size()){
+        if(fields.size() != awards.size() || fields.size() == 0){
             throw new BadRequestException("Bad Request");
         }
 
         for (int i = 0; i < fields.size(); i++) {
             HashMap<String, String> hm = new HashMap<>();
 
-            if(fields.get(i) == null || fields.get(i).length() == 0
-            || awards.get(i) == null || awards.get(i).length() == 0){
+            if(fields.get(i).equals("null") || fields.get(i).length() == 0
+            || awards.get(i).equals("null") || awards.get(i).length() == 0){
                 throw new BadRequestException("Bad Request");
             }
 
@@ -234,4 +235,5 @@ public class GenerateJSON {
 
         return result;
     }
+
 }
